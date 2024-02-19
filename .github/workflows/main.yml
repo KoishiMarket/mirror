@@ -32,5 +32,7 @@ jobs:
         env:
          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
+         git init
+         git add mirror.json
          git remote add target git@github.com:koimarket/koimarket.github.io.git
-         git push target HEAD:refs/heads/main
+         git push target HEAD:refs/heads/main -f
