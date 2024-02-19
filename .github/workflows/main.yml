@@ -36,4 +36,5 @@ jobs:
          git add mirror.json
          git remote add target git@github.com:koimarket/koimarket.github.io.git
          git branch -m main
+         git config --global init.defaultBranch master
          git push target HEAD:refs/heads/main -f
