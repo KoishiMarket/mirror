@@ -27,4 +27,4 @@ jobs:
     - name: 上传文件
       uses: actions/upload-pages-artifact@v2
       with:
-        path: ../src
+        path: mirror.json
