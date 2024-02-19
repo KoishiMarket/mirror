@@ -30,4 +30,4 @@ jobs:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           REPOSITORY_NAME: koimarket/koimarket.github.io
           BRANCH: main
-          FOLDER: public
+          FOLDER: src
