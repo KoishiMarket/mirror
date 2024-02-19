@@ -1,24 +1,30 @@
 name: 'Pub Mirror @MeowSauce'
- 
+
 on:
-  schedule:
-    - cron: "0 0 * * *"
+ push:
+  branches: [ main ]
+ schedule:
+   - cron: "0 0 * * *" # 每天凌晨执行
+
 jobs:
-  bot:
+ Download:
     runs-on: ubuntu-latest
     steps:
-     - name: Checkout code
-       uses: actions/checkout@v2
-     - name: Rename mirror
-       run: |
-         cd src
-         mv data.json mirror.json
-     - name: Push to GitHub.io
-       env:
-         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-       run: |
-         git add mirror.json
-         git remote add orgin git@github.com:koimarket/koimarket.github.io.git
-         git branch -M main
-         git commit -m "pub mirror"
-         git push -f origin main
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Rename mirror
+        run: |
+          cd src
+          mv data.json mirror.json
+
+ Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          REPOSITORY_NAME: koimarket/koimarket.github.io
+          BRANCH: main
+          FOLDER: public
