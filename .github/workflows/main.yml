@@ -17,24 +17,20 @@ jobs:
         run: node index.js
 
       - name: 准备上传
-        run: |
-          cd src
-          mv data.json mirror.json
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./src
 
  Deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: 上传构件
-        uses: actions/upload-artifact@v4
-        with:
-          path: src
-      - name: 上传源
-        env:
-         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: |
-         ls -R
-         git init
-         git add .
-         git remote add origin git@github.com:koimarket/koimarket.github.io.git
-         git branch -m master main
-         git push --force origin main
+   needs: Build
+   permissions:
+      pages: write
+      id-token: write
+   environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+   runs-on: ubuntu-latest
+   steps:
+      - name: 部署到Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
