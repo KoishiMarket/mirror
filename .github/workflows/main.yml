@@ -34,6 +34,6 @@ jobs:
         run: |
          git init
          git add .
-         git remote add target git@github.com:koimarket/koimarket.github.io.git
+         git remote add origin git@github.com:koimarket/koimarket.github.io.git
          git branch -m main
-         git push target HEAD:refs/heads/main -f
+         git push --force origin main
