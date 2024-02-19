@@ -30,4 +30,4 @@ jobs:
         REPO: git@github.com:koimarket/koimarket.github.io.git
         BRANCH: main
         FOLDER: src
-        SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
+        SSH_PRIVATE_KEY: ${ secrets.ACCESS_TOKEN_KEY }
