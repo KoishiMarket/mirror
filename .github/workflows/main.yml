@@ -24,7 +24,13 @@ jobs:
  Deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: 上传文件
-      uses: actions/upload-pages-artifact@v2
-      with:
-        path: mirror.json
+      - name: 上传构件
+        uses: actions/upload-artifact@v4
+        with:
+          path: src
+      - name: 上传源
+        env:
+         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        run: |
+         git remote add target git@github.com:koimarket/koimarket.github.io.git
+         git push target HEAD:refs/heads/main
