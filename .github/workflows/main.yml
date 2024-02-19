@@ -25,9 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: 上传文件
-      uses: s0/git-publish-subdir-action@develop
-      env:
-        REPO: git@github.com:koimarket/koimarket.github.io.git
-        BRANCH: main
-        FOLDER: src
-        SSH_PRIVATE_KEY: ${ secrets.ACCESS_TOKEN_KEY }
+      uses: actions/upload-pages-artifact@v2
+      with:
+        path: ../src
