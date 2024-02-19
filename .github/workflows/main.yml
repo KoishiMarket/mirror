@@ -35,5 +35,5 @@ jobs:
          git init
          git add .
          git remote add origin git@github.com:koimarket/koimarket.github.io.git
-         git branch -m main
+         git branch -m master main
          git push --force origin main
