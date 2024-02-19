@@ -7,4 +7,18 @@ jobs:
   bot:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+     - name: Checkout code
+       uses: actions/checkout@v2
+     - name: Rename mirror
+       run: |
+         cd src
+         mv data.json mirror.json
+     - name: Push to GitHub.io
+       env:
+         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+       run: |
+         git add mirror.json
+         git remote add orgin git@github.com:koimarket/koimarket.github.io.git
+         git branch -M main
+         git commit -m "pub mirror"
+         git push -f origin main
